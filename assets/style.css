@@ -1,0 +1,35 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+	color: #234;
+}
+
+.center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	flex-direction: column;
+}
+
+h1, #startQuizz {
+	display: none;
+}
+
+.question {
+	display: none;
+}
+
+button {
+	border: 1px solid black;
+	border-radius: 20px;
+	padding: 10px 20px;
+	background-color: #fff;
+}
+
+button:hover {
+	background-color: #222;
+	color: #fff;
+}
+

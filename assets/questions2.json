@@ -1,0 +1,20 @@
+
+	{
+		"id": 1,
+		"question": "In which part of your body would you find the cruciate ligament?",
+		"correct": 101,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Elbow"
+			},
+			{
+				"id": 101,
+				"value": "Knee"
+			},
+			{
+				"id": 102,
+				"value": "Wrist"
+			}
+		]
+	}

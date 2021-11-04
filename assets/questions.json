@@ -1,0 +1,572 @@
+[
+	{
+		"id": 1,
+		"question": "In which part of your body would you find the cruciate ligament?",
+		"correct": 101,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Elbow"
+			},
+			{
+				"id": 101,
+				"value": "Knee"
+			},
+			{
+				"id": 102,
+				"value": "Wrist"
+			}
+		]
+	},
+	{
+		"id": 2,
+		"question": "What is the name of the main antagonist in the Shakespeare play Othello?",
+		"correct": 100,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Iago"
+			},
+			{
+				"id": 101,
+				"value": "Cassio"
+			},
+			{
+				"id": 102,
+				"value": "Roderigo"
+			}
+		]
+	},
+	{
+		"id": 3,
+		"question": "What element is denoted by the chemical symbol Sn in the periodic table?",
+		"correct": 100,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Tin"
+			},
+			{
+				"id": 101,
+				"value": "Antimony"
+			},
+			{
+				"id": 102,
+				"value": "Silicon"
+			}
+		]
+	},
+	{
+		"id": 4,
+		"question": "What is the name of the 1976 film about the Watergate scandal, starring Robert Redford and Dustin Hoffman?",
+		"correct": 102,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Moonlight Mile"
+			},
+			{
+				"id": 101,
+				"value": "The Chase"
+			},
+			{
+				"id": 102,
+				"value": "All the President’s Men"
+			}
+		]
+	},
+	{
+		"id": 5,
+		"question": "How many of Henry VIII’s wives were called Catherine?",
+		"correct": 102,
+		"answers": [
+			{
+				"id": 100,
+				"value": "1"
+			},
+			{
+				"id": 101,
+				"value": "2"
+			},
+			{
+				"id": 102,
+				"value": "3"
+			}
+		]
+	},
+	{
+		"id": 6,
+		"question": "What was the most popular girls name in the UK in 2019?",
+		"correct": 100,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Olivia"
+			},
+			{
+				"id": 101,
+				"value": "Grace"
+			},
+			{
+				"id": 102,
+				"value": "Rosie"
+			}
+		]
+	},
+	{
+		"id": 7,
+		"question": "Which comedian was the second permanent host of Never Mind the Buzzcocks after Mark Lamarr?",
+		"correct": 100,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Simon Amstell"
+			},
+			{
+				"id": 101,
+				"value": "Greg Davies"
+			},
+			{
+				"id": 102,
+				"value": "Rhod Gilbert"
+			}
+		]
+	},
+	{
+		"id": 8,
+		"question": "Which popular video game franchise has released games with the subtitles World At War and Black Ops?",
+		"correct": 102,
+		"answers": [
+			{
+				"id": 100,
+				"value": "War of Tank"
+			},
+			{
+				"id": 101,
+				"value": "Battlefield"
+			},
+			{
+				"id": 102,
+				"value": "Call of Duty"
+			}
+		]
+	},
+	{
+		"id": 9,
+		"question": "In what US State is the city Nashville?",
+		"correct": 101,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Virginia"
+			},
+			{
+				"id": 101,
+				"value": "Tennessee"
+			},
+			{
+				"id": 102,
+				"value": "Texas"
+			}
+		]
+	},
+	{
+		"id": 10,
+		"question": "Which rock band was founded by Trent Reznor in 1988?",
+		"correct": 100,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Nine Inch Nails"
+			},
+			{
+				"id": 101,
+				"value": "The Cold Stares"
+			},
+			{
+				"id": 102,
+				"value": "Black Stone Cherry"
+			}
+		]
+	},
+	{
+		"id": 11,
+		"question": "What is the currency of Denmark?",
+		"correct": 102,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Euro"
+			},
+			{
+				"id": 101,
+				"value": "Markka"
+			},
+			{
+				"id": 102,
+				"value": "Krone"
+			}
+		]
+	},
+	{
+		"id": 12,
+		"question": "Which Tennis Grand Slam is played on a clay surface?",
+		"correct": 102,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Wimbledon (All England Club)"
+			},
+			{
+				"id": 101,
+				"value": "The Australian Open (Melbourne Park)"
+			},
+			{
+				"id": 102,
+				"value": "The French Open (Roland Garros)"
+			}
+		]
+	},
+	{
+		"id": 13,
+		"question": "In which European country would you find the Rijksmuseum?",
+		"correct": 100,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Netherlands"
+			},
+			{
+				"id": 101,
+				"value": "Iceland"
+			},
+			{
+				"id": 102,
+				"value": "Denmark"
+			}
+		]
+	},
+	{
+		"id": 14,
+		"question": "How many films have Al Pacino and Robert De Niro appeared in together?",
+		"correct": 101,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Three"
+			},
+			{
+				"id": 101,
+				"value": "Four"
+			},
+			{
+				"id": 102,
+				"value": "Five"
+			}
+		]
+	},
+	{
+		"id": 15,
+		"question": "What was the old name for a Snickers bar before it changed in 1990?",
+		"correct": 102,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Peacock"
+			},
+			{
+				"id": 101,
+				"value": "Knickers"
+			},
+			{
+				"id": 102,
+				"value": "Marathon"
+			}
+		]
+	},
+	{
+		"id": 16,
+		"question": "Who was the head of state in Japan during the second world war?",
+		"correct": 100,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Emperor Akihito"
+			},
+			{
+				"id": 101,
+				"value": "Emperor Naruhito"
+			},
+			{
+				"id": 102,
+				"value": "Emperor Hirohito"
+			}
+		]
+	},
+	{
+		"id": 17,
+		"question": "What is the smallest planet in our solar system?",
+		"correct": 101,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Pluto"
+			},
+			{
+				"id": 101,
+				"value": "Mercury"
+			},
+			{
+				"id": 102,
+				"value": "Venus"
+			}
+		]
+	},
+	{
+		"id": 18,
+		"question": "Who wrote the novels Gone Girl and Sharp Objects?",
+		"correct": 100,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Gillian Flynn"
+			},
+			{
+				"id": 101,
+				"value": "Shirley Jackson"
+			},
+			{
+				"id": 102,
+				"value": "Lisa Alther"
+			}
+		]
+	},
+	{
+		"id": 19,
+		"question": "Which legendary surrealist artist is famous for painting melting clocks?",
+		"correct": 100,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Salvador Dali"
+			},
+			{
+				"id": 101,
+				"value": "Pablo Picasso"
+			},
+			{
+				"id": 102,
+				"value": "Man Ray"
+			}
+		]
+	},
+	{
+		"id": 20,
+		"question": "What band was Harry Styles in before his solo career?",
+		"correct": 101,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Queen’s Park Rangers"
+			},
+			{
+				"id": 101,
+				"value": "One Direction"
+			},
+			{
+				"id": 102,
+				"value": "The Jackson 5"
+			}
+		]
+	},
+	{
+		"id": 21,
+		"question": "Continental United States has 4 time zones, can you name them?",
+		"correct": 102,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Alaskan, Georgian, Gulf, Newfoundland"
+			},
+			{
+				"id": 101,
+				"value": "Atlantic, Central, Western, Pacific"
+			},
+			{
+				"id": 102,
+				"value": "Pacific, Mountain, Central, Eastern"
+			}
+		]
+	},
+	{
+		"id": 22,
+		"question": "What was the Turkish city of Istanbul called before 1930?",
+		"correct": 100,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Constantinopole"
+			},
+			{
+				"id": 101,
+				"value": "Izmir"
+			},
+			{
+				"id": 102,
+				"value": "Ankara"
+			}
+		]
+	},
+	{
+		"id": 23,
+		"question": "From which US city do the band The Killers originate?",
+		"correct": 101,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Baltimore"
+			},
+			{
+				"id": 101,
+				"value": "Las Vegas"
+			},
+			{
+				"id": 102,
+				"value": "New York"
+			}
+		]
+	},
+	{
+		"id": 24,
+		"question": "Name the Coffee shop in US sitcom Friends",
+		"correct": 101,
+		"answers": [
+			{
+				"id": 100,
+				"value": "El Rey"
+			},
+			{
+				"id": 101,
+				"value": "Central Perk"
+			},
+			{
+				"id": 102,
+				"value": "La Colombe"
+			}
+		]
+	},
+	{
+		"id": 25,
+		"question": "How many human players are there on each side in a polo match?",
+		"correct": 102,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Seven"
+			},
+			{
+				"id": 101,
+				"value": "Ten"
+			},
+			{
+				"id": 102,
+				"value": "Four"
+			}
+		]
+	},
+	{
+		"id": 26,
+		"question": "In what year did Tony Blair become British Prime Minister?",
+		"correct": 101,
+		"answers": [
+			{
+				"id": 100,
+				"value": "2001"
+			},
+			{
+				"id": 101,
+				"value": "1997"
+			},
+			{
+				"id": 102,
+				"value": "1999"
+			}
+		]
+	},
+	{
+		"id": 27,
+		"question": "How many times has England won the men’s football World Cup?",
+		"correct": 100,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Once (1966)"
+			},
+			{
+				"id": 101,
+				"value": "Twice (1966, 2014)"
+			},
+			{
+				"id": 102,
+				"value": "It never won"
+			}
+		]
+	},
+	{
+		"id": 28,
+		"question": "What is the capital of New Zealand?",
+		"correct": 100,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Wellington"
+			},
+			{
+				"id": 101,
+				"value": "Auckland"
+			},
+			{
+				"id": 102,
+				"value": "Christchurch"
+			}
+		]
+	},
+	{
+		"id": 29,
+		"question": "Street artist Banksy is originally associated with which British city?",
+		"correct": 102,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Portsmouth"
+			},
+			{
+				"id": 101,
+				"value": "Glasgow"
+			},
+			{
+				"id": 102,
+				"value": "Bristol"
+			}
+		]
+	},
+	{
+		"id": 30,
+		"question": "From what grain is the Japanese spirit Sake made?",
+		"correct": 100,
+		"answers": [
+			{
+				"id": 100,
+				"value": "Rice"
+			},
+			{
+				"id": 101,
+				"value": "Soybeans"
+			},
+			{
+				"id": 102,
+				"value": "Barley"
+			}
+		]
+	}
+]
