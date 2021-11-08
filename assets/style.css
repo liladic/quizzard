@@ -17,8 +17,12 @@ h1, #startQuizz {
 	display: none;
 }
 
-.question {
+.questionForm, #result {
 	display: none;
+}
+
+#result {
+	text-align: center;
 }
 
 button {

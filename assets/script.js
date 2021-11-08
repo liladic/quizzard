@@ -9,12 +9,11 @@ $(document).ready(function(){
     const nextButton = $("<button id='next'>Next</button>");
 
     //fades in the start page
-    $(".fadeIn").delay('500').fadeIn("slow");
+    $(".fadeIn").fadeIn();
 
     //fades out on the click of the button and starts quizz
     $('#startQuizz').click(function(){
-        $(".fadeOut").fadeOut("slow"); //fade out the start page with fadeout class
-        $(".fadeOut").promise().done(function(){ //start when fadeout finished
+        $(".fadeOut").fadeOut("slow").promise().done(function(){ //start when fadeout finished
             $.getJSON("http://localhost/quizzard/assets/questions.json", function(data){
                 questions = data;
                 loadQuestion();
@@ -28,7 +27,7 @@ $(document).ready(function(){
         questionForm.css("display", "none"); //hide form for fadeIn to work
         $(".answer").remove();
         questionParagraph.html(questions[index].question); //save question to paragraph
-        console.log(questions[index]);
+        //console.log(questions[index]);
 
         //print out answers
         questions[index].answers.forEach(answer => {
@@ -38,63 +37,66 @@ $(document).ready(function(){
                 + "'><label for='" + answer.value + "'>" 
                 + answer.value + "</label></div>");
         });
-        questionForm.append(nextButton); //append button after answers
-        questionForm.fadeIn('slow'); //show the question form
+        questionForm.append(nextButton).fadeIn('slow'); //show the question form
     }
 
     function endGame() {
         if(points === 1) {
-            $(".center").append("<h2>END OF GAME</h2><p>You have " + points + " point.</p><button id='playAgain'>Play again</button>");
+            $("#result").remove();
+            $(".center").append("<div id='result'><h2>END OF GAME</h2><p>You have " + points + " point.</p><button id='playAgain'>Play again</button></div>");
+            $("#result").fadeIn();
         } else {
-            $(".center").append("<h2>END OF GAME</h2><p>You have " + points + " points.</p><button id='playAgain'>Play again</button>");
+            $("#result").remove();
+            $(".center").append("<div id='result'><h2>END OF GAME</h2><p>You have " + points + " points.</p><button id='playAgain'>Play again</button></div>");
+            $("#result").fadeIn();
         }
         $("#playAgain").click(function() {
             points = 0;
             index = 0;
-            $(".center").children().fadeOut();
-            loadQuestion();
+            $("#result").fadeOut().promise().done(function(event) {
+                //console.log(event);
+                loadQuestion();
+            });
         });
     }
 
 
 
         //handle click on next button
-        //////////////////////////////////////////////////////////////////
-
-        //check selection with click on the next button
         nextButton.click(function() {
             event.preventDefault(); 
-            let anyChecked = false; //prevent continue if none is selected
-            $('input').each(function() {
+            let anyChecked = false; //for preventing continue if none is selected
+            $('input').each(function() { //check if any is selected
                 if ($(this).is(':checked')) {
-                    if(this.id == questions[index].correct) {
-                        points++;
-                        console.log(`Correct! You have ${points} points.`);
-                        anyChecked = true;
-                        index++;
-                        questionForm.fadeOut();
-                        if(index >=2) {
-                            endGame();
-                        } else {
-                            loadQuestion();
+                    anyChecked = true; //enables to continue to next question
 
-                        }
+                    if(this.id == questions[index].correct) { //handling right and wrong answers and num of points
+                        index++; //change index to another question
+                        points++; //add point
+                        //console.log(`Correct! You have ${points} points.`);
+                        questionForm.fadeOut().promise().done(function(){
+                            if(index >=10) { //end when reach last question, 30 questions currently avaliable
+                                endGame();
+                            } else {
+                                loadQuestion(); //loads another question
+                            }
+                        });
+
                     } else {
-                        console.log(`Wrong answer! The correct answer is ${questions[index].correct}.`);
-                        anyChecked = true;
-                        index++;
-                        questionForm.fadeOut();
-                        if(index >=2) {
-                            endGame();
-                        } else {
-                            loadQuestion();
-
-                        }
-                    }
-                }
+                        //console.log(`Wrong answer! The correct answer is ${questions[index].correct}. You have ${points} points.`);
+                        index++; //change to another question
+                        questionForm.fadeOut().promise().done(function() {
+                            if(index >=10) {
+                                endGame();
+                            } else {
+                                loadQuestion();
+                            }
+                        });
+                    };
+                };
             });
 
-            //handle no selected answer
+            //handle when no selected answer
             if (!anyChecked) {
                 console.log('no answer selected');
                 $('#noAnswerSelected').css('display', 'block'); //if no answer is selected, show alert
@@ -102,7 +104,5 @@ $(document).ready(function(){
                     $('#noAnswerSelected').css('display', 'none');
                 });
             }
-        });
-        /////////////////////////////////////////////////////////////////
-    
+        });    
 });
