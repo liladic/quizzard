@@ -18,5 +18,9 @@
 		  
 		</form>
 	</div>
+	<div id="noAnswerSelected">
+		<p>Please select your answer!</p>
+		<button>Close</button>
+</div>
 </body>
 </html>
