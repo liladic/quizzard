@@ -1,130 +1,108 @@
-//global function (for now), takes array of objets as parameter and returns random object
-// (in case here takes questions as parameter and returns random question)
-const chooseRandomQuestion = questions => questions[Math.round(Math.random()*questions.length-1)];
-
-
 $(document).ready(function(){
-	//fades in the start page
+
+    let questions = null;
+    let points = 0;
+    let index = 0;
+    const questionForm = $("#questionForm"); //save form to variable
+    const questionParagraph = $("<p></p>"); //create paragraph that will contain a question
+    questionForm.append(questionParagraph); //append paragraph to form
+    const nextButton = $("<button id='next'>Next</button>");
+
+    //fades in the start page
     $(".fadeIn").delay('500').fadeIn("slow");
 
     //fades out on the click of the button and starts quizz
     $('#startQuizz').click(function(){
-    	$(".fadeOut").fadeOut("slow"); //fade out the start page with fadeout class
-
-    	//get local json with questions
-    	$.getJSON("http://localhost/quizzard/assets/questions.json", function(data){
-    		const questionsData = data;
-    		//console.log(questionsData);
-
-    		 //take a random question out of data
-            let randomQuestion = chooseRandomQuestion(data);
-            console.log(randomQuestion);
-
-            //count points
-            let points = 0;
-          
-    		//const answersArr = []; //save answers as objects, containing question id and answer id for answer comparison
-    		//or immediately compare answer id with questions correct value, add a point and turn text green/yellow,
-    		//depending if the answer is correct or not
-
-    		//acces form through variable and set display: none
-    		const questionForm = $("#questionForm");
-    		questionForm.css("display", "none");
-
-    		//create paragraph that will contain a question and append it to form
-    		const questionParagraph = $("<p></p>");
-            const nextButton = $("<button id='next'>Next</button>");
-    		questionForm.append(questionParagraph);
-
-    		//save question to paragraph
-            questionParagraph.html(randomQuestion.question);
-          
-          	//print out answers from the random question
-            randomQuestion.answers.forEach(answer => { //make global function from this?
-                console.log(answer);
-                questionForm.append("<input type='radio' id='" + answer.id 
-                    + "' name='answer' value='" + answer.value 
-                    + "'><label for='" + answer.value + "'>" 
-                    + answer.value + "</label><br>");
+        $(".fadeOut").fadeOut("slow"); //fade out the start page with fadeout class
+        $(".fadeOut").promise().done(function(){ //start when fadeout finished
+            $.getJSON("http://localhost/quizzard/assets/questions.json", function(data){
+                questions = data;
+                loadQuestion();
+            }).fail(function(){
+                console.log("An error in fetching json data has occurred.");
             });
+        });
+    });
 
-            questionForm.append(nextButton);
+    function loadQuestion() {
+        questionForm.css("display", "none"); //hide form for fadeIn to work
+        $(".answer").remove();
+        questionParagraph.html(questions[index].question); //save question to paragraph
+        console.log(questions[index]);
 
-            //show the question form
-            questionForm.delay('600').fadeIn('slow');
+        //print out answers
+        questions[index].answers.forEach(answer => {
+            //console.log(answer);
+            questionForm.append("<div class='answer'><input type='radio' id='" + answer.id 
+                + "' name='answer' value='" + answer.value 
+                + "'><label for='" + answer.value + "'>" 
+                + answer.value + "</label></div>");
+        });
+        questionForm.append(nextButton); //append button after answers
+        questionForm.fadeIn('slow'); //show the question form
+    }
 
-            //check selection with click on the next button
-            nextButton.click(function() {
-                event.preventDefault(); 
-                let anyChecked = false; //prevent continue if none is selected
-	            $('input').each(function() {
-				    if ($(this).is(':checked')) {
-                        if(this.id == randomQuestion.correct) {
-                            points++;
-                            console.log(`Correct! You have ${points} points.`);
-                            anyChecked = true;
+    function endGame() {
+        if(points === 1) {
+            $(".center").append("<h2>END OF GAME</h2><p>You have " + points + " point.</p><button id='playAgain'>Play again</button>");
+        } else {
+            $(".center").append("<h2>END OF GAME</h2><p>You have " + points + " points.</p><button id='playAgain'>Play again</button>");
+        }
+        $("#playAgain").click(function() {
+            points = 0;
+            index = 0;
+            $(".center").children().fadeOut();
+            loadQuestion();
+        });
+    }
+
+
+
+        //handle click on next button
+        //////////////////////////////////////////////////////////////////
+
+        //check selection with click on the next button
+        nextButton.click(function() {
+            event.preventDefault(); 
+            let anyChecked = false; //prevent continue if none is selected
+            $('input').each(function() {
+                if ($(this).is(':checked')) {
+                    if(this.id == questions[index].correct) {
+                        points++;
+                        console.log(`Correct! You have ${points} points.`);
+                        anyChecked = true;
+                        index++;
+                        questionForm.fadeOut();
+                        if(index >=2) {
+                            endGame();
                         } else {
-                            console.log(`Wrong answer! The correct answer is ${randomQuestion.correct}.`);
-                            anyChecked = true;
+                            loadQuestion();
+
+                        }
+                    } else {
+                        console.log(`Wrong answer! The correct answer is ${questions[index].correct}.`);
+                        anyChecked = true;
+                        index++;
+                        questionForm.fadeOut();
+                        if(index >=2) {
+                            endGame();
+                        } else {
+                            loadQuestion();
+
                         }
                     }
-				});
-                if (!anyChecked) {
-                    alert('Please select your answer!');
-                } else {
-                    questionForm.fadeOut();
-                    $(questionForm).promise().done(function(){
-                        // will be called when all the animations on the queue finish
-                        randomQuestion = chooseRandomQuestion(data);
-                        console.log(randomQuestion);
-                        questionParagraph.html(randomQuestion.question);
-                        anyChecked = false;
-                        //clean existing answers
-                        $('input').remove();
-                        $('label').remove();
-                        nextButton.remove();
-
-                        randomQuestion.answers.forEach(answer => { //make global function from this?
-                            console.log(answer);
-                            questionForm.append("<input type='radio' id='" + answer.id 
-                                + "' name='answer' value='" + answer.value 
-                                + "'><label for='" + answer.value + "'>" 
-                                + answer.value + "</label><br>");
-                        });
-
-                        questionForm.append(nextButton);
-                        //show the question form
-                        questionForm.fadeIn('slow');
-        //handling second question
-                        nextButton.click(function() {
-                            event.preventDefault();
-                            $('input').each(function() {
-                                if ($(this).is(':checked')) {
-                                    if(this.id == randomQuestion.correct) {
-                                        points++;
-                                        console.log(`Correct! You have ${points} points.`);
-                                        anyChecked = true;
-                                    } else {
-                                        console.log(`Wrong answer! The correct answer is ${randomQuestion.correct}.`);
-                                        anyChecked = true;
-                                    }
-                                }
-                            });
-                        });   
-                    });
-                    
-
-
-                } //repeat the process, hide question and load new question
+                }
             });
-            
 
-        }).fail(function(){
-            console.log("An error has occurred.");
-    	});
- 	});
-}); //end of document ready
-
-
-
-
+            //handle no selected answer
+            if (!anyChecked) {
+                console.log('no answer selected');
+                $('#noAnswerSelected').css('display', 'block'); //if no answer is selected, show alert
+                $('#noAnswerSelected').click(function() { //closing alert
+                    $('#noAnswerSelected').css('display', 'none');
+                });
+            }
+        });
+        /////////////////////////////////////////////////////////////////
+    
+});
