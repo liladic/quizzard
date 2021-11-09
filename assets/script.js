@@ -1,6 +1,9 @@
 $(document).ready(function(){
 
+
+    //global variables
     let questions = null;
+    let randomIndex = null;
     let points = 0;
     let index = 0;
     const questionForm = $("#questionForm"); //save form to variable
@@ -11,27 +14,36 @@ $(document).ready(function(){
     //fades in the start page
     $(".fadeIn").fadeIn();
 
-    //fades out on the click of the button and starts quizz
+    //fades out the start page and starts game
     $('#startQuizz').click(function(){
         $(".fadeOut").fadeOut("slow").promise().done(function(){ //start when fadeout finished
-            $.getJSON("http://localhost/quizzard/assets/questions.json", function(data){
-                questions = data;
-                loadQuestion();
-            }).fail(function(){
-                console.log("An error in fetching json data has occurred.");
-            });
+            startGame();
         });
     });
 
+    //fetch json questions
+    function startGame() {
+        $.getJSON("http://localhost/quizzard/assets/questions.json", function(data){
+            questions = data;
+            loadQuestion();
+        }).fail(function(){
+            console.log("An error in fetching json data has occurred.");
+        });
+    }
+
+    //load question
     function loadQuestion() {
         questionForm.css("display", "none"); //hide form for fadeIn to work
         $(".answer").remove();
-        questionParagraph.html((index+1) + ". " + questions[index].question); //save question to paragraph
-        //console.log(questions[index]);
+        console.log('question loaded');
+        console.log(questions.length);
+        randomIndex = Math.floor(Math.random()*questions.length);
+        questionParagraph.html((index+1) + ". " + questions[randomIndex].question); //save question to paragraph
+        console.log(questions[randomIndex]);
 
         //print out answers
-        questions[index].answers.forEach(answer => {
-            //console.log(answer);
+        questions[randomIndex].answers.forEach(answer => {
+            console.log(answer);
             questionForm.append("<div class='answer'><input type='radio' id='" + answer.id 
                 + "' name='answer' value='" + answer.value 
                 + "'><label for='" + answer.value + "'>" 
@@ -39,6 +51,7 @@ $(document).ready(function(){
         });
         questionForm.append(nextButton).fadeIn('slow'); //show the question form
     }
+
 
     function endGame() {
         if(points === 1) {
@@ -55,54 +68,55 @@ $(document).ready(function(){
             index = 0;
             $("#result").fadeOut().promise().done(function(event) {
                 //console.log(event);
-                loadQuestion();
+                startGame();
             });
         });
     }
 
 
+    //handle click on next button
+    nextButton.click(function() {
+        event.preventDefault(); 
+        let anyChecked = false; //for preventing continue if none is selected
+        $('input').each(function() { //check if any is selected
+            if ($(this).is(':checked')) {
+                anyChecked = true; //enables to continue to next question
 
-        //handle click on next button
-        nextButton.click(function() {
-            event.preventDefault(); 
-            let anyChecked = false; //for preventing continue if none is selected
-            $('input').each(function() { //check if any is selected
-                if ($(this).is(':checked')) {
-                    anyChecked = true; //enables to continue to next question
+                if(this.id == questions[randomIndex].correct) { //handling right and wrong answers and num of points
+                    index++; //change index of the question
+                    points++; //add point
+                    console.log(`Correct! You have ${points} points.`);
+                    console.log(questions.splice(randomIndex,1));
+                    questionForm.fadeOut().promise().done(function(){
+                        if(index < 10) {
+                            loadQuestion();
+                        } else {
+                            endGame();
+                        }
+                    });
 
-                    if(this.id == questions[index].correct) { //handling right and wrong answers and num of points
-                        index++; //change index to another question
-                        points++; //add point
-                        //console.log(`Correct! You have ${points} points.`);
-                        questionForm.fadeOut().promise().done(function(){
-                            if(index >=10) { //end when reach last question, 30 questions currently avaliable
-                                endGame();
-                            } else {
-                                loadQuestion(); //loads another question
-                            }
-                        });
-
-                    } else {
-                        //console.log(`Wrong answer! The correct answer is ${questions[index].correct}. You have ${points} points.`);
-                        index++; //change to another question
-                        questionForm.fadeOut().promise().done(function() {
-                            if(index >=10) {
-                                endGame();
-                            } else {
-                                loadQuestion();
-                            }
-                        });
-                    };
+                } else {
+                    console.log(`Wrong answer! The correct answer is ${questions[index].correct}. You have ${points} points.`);
+                    index++; //change index to another question
+                    console.log(questions.splice(randomIndex,1));
+                    questionForm.fadeOut().promise().done(function() {
+                        if(index < 10) {
+                            loadQuestion();
+                        } else {
+                            endGame();
+                        }
+                    });
                 };
-            });
+            };
+        });
 
-            //handle when no selected answer
-            if (!anyChecked) {
-                console.log('no answer selected');
-                $('#noAnswerSelected').css('display', 'block'); //if no answer is selected, show alert
-                $('#noAnswerSelected').click(function() { //closing alert
-                    $('#noAnswerSelected').css('display', 'none');
-                });
-            }
-        });    
+        //show alert if no answer is selected
+        if (!anyChecked) {
+            console.log('no answer selected');
+            $('#noAnswerSelected').css('display', 'block'); //if no answer is selected, show alert
+            $('#noAnswerSelected').click(function() { //closing alert
+                $('#noAnswerSelected').css('display', 'none');
+            });
+        }
+    });    
 });
