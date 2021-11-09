@@ -6,6 +6,7 @@ $(document).ready(function(){
     let randomIndex = null;
     let points = 0;
     let index = 0;
+    const numOfQuestions = 5; //set number of questions to play with, max is the json.length
     const questionForm = $("#questionForm"); //save form to variable
     const questionParagraph = $("<p></p>"); //create paragraph that will contain a question
     questionForm.append(questionParagraph); //append paragraph to form
@@ -55,12 +56,12 @@ $(document).ready(function(){
 
     function endGame() {
         $("#result").remove();
-        if(points < 5) {
-            $(".center").append("<div id='result'><h2>END OF GAME</h2><p>You have " + points + " out of 10 points. Try again, you can do better.</p><button id='playAgain'>Play again</button></div>");
-        } else if (points >= 5 && points < 10) {
-            $(".center").append("<div id='result'><h2>END OF GAME</h2><p>Good job! You have " + points + " out of 10 points.</p><button id='playAgain'>Play again</button></div>");
-        } else if (points === 10) {
-            $(".center").append("<div id='result'><h2>END OF GAME</h2><p>Great job! You have " + points + " out of 10 points. Well done!</p><button id='playAgain'>Play again</button></div>");
+        if(points/numOfQuestions < .5) {
+            $(".center").append("<div id='result'><h2>END OF GAME</h2><p>You have " + points + " out of " + numOfQuestions +" points. Try again, you can do better.</p><button id='playAgain'>Play again</button></div>");
+        } else if (points/numOfQuestions >= .5 && points/numOfQuestions < 1) {
+            $(".center").append("<div id='result'><h2>END OF GAME</h2><p>Good job! You have " + points + " out of " + numOfQuestions + " points.</p><button id='playAgain'>Play again</button></div>");
+        } else if (points === numOfQuestions) {
+            $(".center").append("<div id='result'><h2>END OF GAME</h2><p>Great job! You have " + points + " out of " + numOfQuestions + " points. Well done!</p><button id='playAgain'>Play again</button></div>");
         }
         
         $("#result").fadeIn();
@@ -89,7 +90,7 @@ $(document).ready(function(){
                     console.log(`Correct! You have ${points} points.`);
                     console.log(questions.splice(randomIndex,1));
                     questionForm.fadeOut().promise().done(function(){
-                        if(index < 10) {
+                        if(index < numOfQuestions) {
                             loadQuestion();
                         } else {
                             endGame();
@@ -101,7 +102,7 @@ $(document).ready(function(){
                     index++; //change index to another question
                     console.log(questions.splice(randomIndex,1));
                     questionForm.fadeOut().promise().done(function() {
-                        if(index < 10) {
+                        if(index < numOfQuestions) {
                             loadQuestion();
                         } else {
                             endGame();
@@ -110,7 +111,6 @@ $(document).ready(function(){
                 };
             };
         });
-
         //show alert if no answer is selected
         if (!anyChecked) {
             console.log('no answer selected');
