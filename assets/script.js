@@ -54,15 +54,16 @@ $(document).ready(function(){
 
 
     function endGame() {
-        if(points === 1) {
-            $("#result").remove();
-            $(".center").append("<div id='result'><h2>END OF GAME</h2><p>You have " + points + " point.</p><button id='playAgain'>Play again</button></div>");
-            $("#result").fadeIn();
-        } else {
-            $("#result").remove();
-            $(".center").append("<div id='result'><h2>END OF GAME</h2><p>You have " + points + " points.</p><button id='playAgain'>Play again</button></div>");
-            $("#result").fadeIn();
+        $("#result").remove();
+        if(points < 5) {
+            $(".center").append("<div id='result'><h2>END OF GAME</h2><p>You have " + points + " out of 10 points. Try again, you can do better.</p><button id='playAgain'>Play again</button></div>");
+        } else if (points >= 5 && points < 10) {
+            $(".center").append("<div id='result'><h2>END OF GAME</h2><p>Good job! You have " + points + " out of 10 points.</p><button id='playAgain'>Play again</button></div>");
+        } else if (points === 10) {
+            $(".center").append("<div id='result'><h2>END OF GAME</h2><p>Great job! You have " + points + " out of 10 points. Well done!</p><button id='playAgain'>Play again</button></div>");
         }
+        
+        $("#result").fadeIn();
         $("#playAgain").click(function() {
             points = 0;
             index = 0;
