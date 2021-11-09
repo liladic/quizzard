@@ -26,7 +26,7 @@ $(document).ready(function(){
     function loadQuestion() {
         questionForm.css("display", "none"); //hide form for fadeIn to work
         $(".answer").remove();
-        questionParagraph.html(questions[index].question); //save question to paragraph
+        questionParagraph.html((index+1) + ". " + questions[index].question); //save question to paragraph
         //console.log(questions[index]);
 
         //print out answers
