@@ -5,40 +5,53 @@ body {
 	color: #fff;
 }
 
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
 .center {
-	display: flex;
-	justify-content: center;
 	align-items: center;
-	padding: 0 10%;
-	height: 100vh;
-	flex-direction: column;
-	background-color: #6a5acd;
-
-}
-
-h1, #startQuizz {
-	display: none;
 	text-align: center;
+  	display: flex;
+  	justify-content: center;
+  	flex-direction: column;
+	width: 500px;
+	height: 300px;
+	padding: 20px;
+	background-color: #6a5acd;
 }
 
-h1, h2, p {
+h1, #startQuizz, form, #result {
+	display: none;
+}
+
+h1, h2, p, .answer {
 	text-shadow: 2px 2px #4837b5;
 }
 
-p {
-	font-size: 20px;
-}
-
 form {
-	text-shadow: 1px 1px #4837b5;
+	padding: 10px 20px;
+	width: 400px;
+	border: 1px solid white;
+	text-align: left;
 }
 
-.questionForm, #result {
-	display: none;
+.answer {
+	padding: 2px;
+	font-size: 18px;
 }
 
-#result {
-	text-align: center;
+p {
+	font-size: 22px;
 }
 
 button {
@@ -46,7 +59,9 @@ button {
 	border-radius: 20px;
 	padding: 10px 20px;
 	margin-top: 20px;
+	margin-bottom: 20px;
 	color: #fff;
+	font-size: 16px;
 	font-weight: bold;
 	background-color: #222;
 }
@@ -59,14 +74,9 @@ button:hover {
 
 #noAnswerSelected {
 	position: fixed;
-	top: 50%;
-	left: 50%;
-	width: 300px;
+	width: 350px;
+	height: 120px;
 	padding: 20px;
-	margin-left: -170px;
-	margin-top: -50px;
-	text-align: center;
-	display: block;
 	border: 1px solid #fff;
 	color: #6a5acd;
 	box-shadow: 10px 10px #222;
@@ -86,4 +96,23 @@ button:hover {
 #noAnswerSelected button:hover {
 	color: #fff;
 	background-color: #5a4fcf;
+}
+
+@media (max-width: 540px) {
+
+	.center {
+		min-width: 200px;
+		height: 100vh;
+	}
+
+	form {
+		width: 95%;
+		border: none;
+	}
+
+	#noAnswerSelected {
+		width: 80vw;
+		max-width: 350px;
+		padding: 4%;
+	}
 }

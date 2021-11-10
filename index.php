@@ -11,16 +11,21 @@
 	<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-	<div class="center">
-		<h1 class="fadeIn fadeOut">Test your knowledge with Quizzard</h1>
-		<button class="fadeIn fadeOut" id="startQuizz">START QUIZZ</button>
-		<form id="questionForm">
-		  
-		</form>
+	<div class="container">
+
+
+		<div class="center">
+			<h1 class="fadeIn fadeOut">Test your knowledge with Quizzard</h1>
+			<button class="fadeIn fadeOut" id="startQuizz">START QUIZZ</button>
+			<form id="questionForm">
+			</form>
+		</div>
+		<div class="center" id="noAnswerSelected">
+			<p>Please select your answer!</p>
+			<button>Close</button>
+		</div>
+
+
 	</div>
-	<div id="noAnswerSelected">
-		<p>Please select your answer!</p>
-		<button>Close</button>
-</div>
 </body>
 </html>

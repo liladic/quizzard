@@ -24,8 +24,8 @@ $(document).ready(function(){
 
     //fetch json questions
     function startGame() {
-        $.getJSON("https://liladic.000webhostapp.com/projects/quizzard/assets/questions.json", function(data){
-        //$.getJSON("http://localhost/quizzard/assets/questions.json", function(data){
+        //$.getJSON("https://liladic.000webhostapp.com/projects/quizzard/assets/questions.json", function(data){
+        $.getJSON("http://localhost/quizzard/assets/questions.json", function(data){
             questions = data;
             loadQuestion();
         }).fail(function(){
@@ -37,15 +37,11 @@ $(document).ready(function(){
     function loadQuestion() {
         questionForm.css("display", "none"); //hide form for fadeIn to work
         $(".answer").remove();
-        console.log('question loaded');
-        console.log(questions.length);
         randomIndex = Math.floor(Math.random()*questions.length);
         questionParagraph.html((index+1) + ". " + questions[randomIndex].question); //save question to paragraph
-        console.log(questions[randomIndex]);
 
         //print out answers
         questions[randomIndex].answers.forEach(answer => {
-            console.log(answer);
             questionForm.append("<div class='answer'><input type='radio' id='" + answer.id 
                 + "' name='answer' value='" + answer.value 
                 + "'><label for='" + answer.value + "'>" 
@@ -88,8 +84,7 @@ $(document).ready(function(){
                 if(this.id == questions[randomIndex].correct) { //handling right and wrong answers and num of points
                     index++; //change index of the question
                     points++; //add point
-                    console.log(`Correct! You have ${points} points.`);
-                    console.log(questions.splice(randomIndex,1));
+                    questions.splice(randomIndex,1);
                     questionForm.fadeOut().promise().done(function(){
                         if(index < numOfQuestions) {
                             loadQuestion();
@@ -99,9 +94,8 @@ $(document).ready(function(){
                     });
 
                 } else {
-                    console.log(`Wrong answer! The correct answer is ${questions[index].correct}. You have ${points} points.`);
                     index++; //change index to another question
-                    console.log(questions.splice(randomIndex,1));
+                    questions.splice(randomIndex,1);
                     questionForm.fadeOut().promise().done(function() {
                         if(index < numOfQuestions) {
                             loadQuestion();
@@ -114,7 +108,6 @@ $(document).ready(function(){
         });
         //show alert if no answer is selected
         if (!anyChecked) {
-            console.log('no answer selected');
             $('#noAnswerSelected').css('display', 'block'); //if no answer is selected, show alert
             $('#noAnswerSelected').click(function() { //closing alert
                 $('#noAnswerSelected').css('display', 'none');
