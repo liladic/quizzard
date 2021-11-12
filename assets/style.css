@@ -1,7 +1,8 @@
 body {
 	margin: 0;
 	padding: 0;
-	font-family: Arial, sans-serif;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
 	color: #fff;
 }
 
@@ -21,33 +22,45 @@ html, body {
 .center {
 	align-items: center;
 	text-align: center;
-  	display: flex;
-  	justify-content: center;
-  	flex-direction: column;
-	width: 500px;
-	height: 300px;
-	padding: 20px;
-	background-color: #6a5acd;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+	width: 550px;
+	height: 350px;
+	background-color: #29BB89;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 h1, #startQuizz, form, #result {
 	display: none;
 }
 
-h1, h2, p, .answer {
-	text-shadow: 2px 2px #4837b5;
+h1, #result {
+	padding: 0 5%;
 }
 
 form {
-	padding: 10px 20px;
-	width: 400px;
-	border: 1px solid white;
+	width: 100%;
+	height: 100%;
 	text-align: left;
 }
 
+form p {
+	width: 80%;
+	margin: 0;
+	margin-bottom: 20pt;
+	padding: 5% 10%;
+	color: #fff;
+	background-color: #289672;
+}
+
 .answer {
-	padding: 2px;
+	padding: 2pt;
 	font-size: 18px;
+}
+
+.answer, #next {
+	margin-left: 20pt;
 }
 
 p {
@@ -63,13 +76,13 @@ button {
 	color: #fff;
 	font-size: 16px;
 	font-weight: bold;
-	background-color: #222;
+	background-color: #289672;
 }
 
 button:hover {
 	background-color: #fff;
-	color: #234;
-	border: 1px solid #4837b5;
+	color: #289672;
+	border: 1px solid #289672;
 }
 
 #noAnswerSelected {
@@ -78,14 +91,16 @@ button:hover {
 	height: 120px;
 	padding: 20px;
 	border: 1px solid #fff;
-	color: #6a5acd;
-	box-shadow: 10px 10px #222;
+	/*color: #6a5acd;*/
+	/*box-shadow: 10px 10px #222;*/
 	background-color: #f8f8f8;
 	display: none;
 }
 
 #noAnswerSelected p {
 	text-shadow: none;
+	color: #289672;
+	padding: 0 5%;
 }
 
 #noAnswerSelected button, #result button {
@@ -93,26 +108,18 @@ button:hover {
 	margin-bottom: 20px;
 }
 
-#noAnswerSelected button:hover {
-	color: #fff;
-	background-color: #5a4fcf;
-}
-
-@media (max-width: 540px) {
+@media (max-width: 550px) {
 
 	.center {
-		min-width: 200px;
-		height: 100vh;
-	}
-
-	form {
-		width: 95%;
-		border: none;
+		width: 100%;
+		height: 100%;
 	}
 
 	#noAnswerSelected {
-		width: 80vw;
+		width: 80%;
 		max-width: 350px;
+		min-height: 120px;
+		max-height: 200px;
 		padding: 4%;
 	}
 }
