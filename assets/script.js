@@ -24,7 +24,7 @@ $(document).ready(function(){
 
     //fetch json questions
     function startGame() {
-        $.getJSON("http://liladic.000webhostapp.com/projects/quizzard/assets/questions.json", function(data){
+        $.getJSON("assets/questions.json", function(data){
         // $.getJSON("http://localhost/quizzard/assets/questions.json", function(data){
             questions = data;
             loadQuestion();
